@@ -2,22 +2,21 @@ FROM ubuntu
 
 LABEL version="1.9.0.15"
 
-ENV NAME Bedrock-Server
-ENV arc=bedrock-server-1.9.0.15.zip
-ENV dlarc=https://minecraft.azureedge.net/bin-linux/${arc}
+ENV VERSION=1.9.0.15
 
 WORKDIR /opt/minecraft
+
+ADD https://minecraft.azureedge.net/bin-linux/bedrock-server-${VERSION}.zip bedrock-server-${VERSION}.zip
 
 RUN ["apt-get", "update"]
 RUN ["apt-get", "install","-y", "unzip", "curl"]
 RUN ["mkdir", "/opt/minecraft/worlds"]
 
-ADD ${dlarc} ${arc}
-RUN unzip -n ${arc}
+RUN unzip -n bedrock-server-${VERSION}.zip && rm bedrock-server-${VERSION}.zip
 
 RUN ["apt-get", "purge", "-y", "unzip"]
 RUN ["apt-get", "clean"]
-RUN ["rm", "-rf", "/var/cache/apt"] 
+RUN ["rm", "-rf", "/var/cache/apt"]
 
 EXPOSE 19132
 EXPOSE 19133
