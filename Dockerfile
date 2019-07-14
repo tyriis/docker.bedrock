@@ -1,8 +1,8 @@
 FROM ubuntu
 
-LABEL version="1.11.4.2"
+LABEL version="1.12.0.28"
 
-ENV VERSION=1.11.4.2
+ENV VERSION=1.12.0.28
 
 WORKDIR /opt/minecraft
 
