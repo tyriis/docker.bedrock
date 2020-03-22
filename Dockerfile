@@ -1,15 +1,15 @@
 FROM ubuntu
 
-LABEL version="1.13.0.34"
+LABEL version="1.14.32.1"
 
-ENV VERSION=1.13.0.34
+ENV VERSION=1.14.32.1
 
 WORKDIR /opt/minecraft
 
 ADD https://minecraft.azureedge.net/bin-linux/bedrock-server-${VERSION}.zip bedrock-server-${VERSION}.zip
 
 RUN ["apt-get", "update"]
-RUN ["apt-get", "install","-y", "unzip", "curl"]
+RUN ["apt-get", "install","-y", "unzip"]
 RUN ["mkdir", "/opt/minecraft/worlds"]
 
 RUN unzip -n bedrock-server-${VERSION}.zip && rm bedrock-server-${VERSION}.zip
@@ -23,4 +23,3 @@ EXPOSE 19133
 
 ENV LD_LIBRARY_PATH=.
 CMD ./bedrock_server
-
