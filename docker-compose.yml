@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  bedrock:
+    image: bedrock:1.14.32.1
+    container_name: bedrock
+    volumes:
+      - worlds:/opt/minecraft/worlds
+      - behavior_packs:/opt/minecraft/behavior_packs
+      - resource_packs:/opt/minecraft/resource_packs
+      - ${PWD}/config/permissions.json:/opt/minecraft/permissions.json:ro
+      - ${PWD}/config/server.properties:/opt/minecraft/server.properties:ro
+      - ${PWD}/config/whitelist.json:/opt/minecraft/whitelist.json:ro
+    #network_mode: host
+    ports:
+      - '19132:19132/udp'
+      - '19133:19133'
+
+volumes:
+  worlds:
+  behavior_packs:
+  resource_packs:
